@@ -23,5 +23,4 @@ lyft_dataset_sdk
 cython
 nbconvert
 imageio
-flake8
 ipykernel
