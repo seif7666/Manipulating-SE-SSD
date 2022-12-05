@@ -1,12 +1,12 @@
 import time
 
 import numpy as np
-import spconv
+import spconv.pytorch as spcon
 import torch
 from det3d.models.utils import Empty, change_default_args
 from det3d.torchie.cnn import constant_init, kaiming_init
 from det3d.torchie.trainer import load_checkpoint
-from spconv import SparseConv3d, SubMConv3d
+from spconv.pytorch.conv import SparseConv3d, SubMConv3d
 from torch import nn
 from torch.nn import BatchNorm1d
 from torch.nn import functional as F
@@ -21,7 +21,7 @@ import math
 
 def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """3x3 convolution with padding"""
-    return spconv.SubMConv3d(
+    return spcon.SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=3,
@@ -33,7 +33,7 @@ def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
 
 def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """1x1 convolution"""
-    return spconv.SubMConv3d(
+    return spcon.SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=1,
@@ -43,7 +43,7 @@ def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
         indice_key=indice_key,
     )
 
-class SparseBasicBlock(spconv.SparseModule):
+class SparseBasicBlock(spcon.SparseModule):
     expansion = 1
 
     def __init__(
