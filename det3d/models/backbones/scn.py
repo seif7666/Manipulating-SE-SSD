@@ -103,7 +103,7 @@ class SpMiddleFHD(nn.Module):
         if norm_cfg is None:
             norm_cfg = dict(type="BN1d", eps=1e-3, momentum=0.01)
 
-        self.middle_conv = spconv.SparseSequential(
+        self.middle_conv = spcon.SparseSequential(
             SubMConv3d(num_input_features, 16, 3, bias=False, indice_key="subm0"),
             build_norm_layer(norm_cfg, 16)[1],
             nn.ReLU(),
