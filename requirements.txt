@@ -25,4 +25,3 @@ nbconvert
 imageio
 flake8
 ipykernel
-spconv
