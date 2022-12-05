@@ -8,7 +8,7 @@ from det3d.datasets.kitti import kitti_common as kitti_ds
 from det3d.datasets.utils.create_gt_database import create_groundtruth_database
 from det3d.torchie import Config
 
-cfg = Config.fromfile("../examples/second/configs/config.py")
+cfg = Config.fromfile("examples/second/configs/config.py")
 
 def kitti_data_prep(root_path):
     # compress info of image(path), velodyne(path), label (all info but dc removed),
