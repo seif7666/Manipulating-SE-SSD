@@ -105,6 +105,7 @@ def create_kitti_info_file(data_path, save_path=None, relative_path=True):
         save_path = Path(save_path)
 
     # get kitti_infos_train and dump it into the file
+    print(f'Data path is {data_path}')
     kitti_infos_train = get_kitti_image_info(
         data_path,
         training=True,
@@ -291,6 +292,7 @@ def get_kitti_info_path(
     img_idx_str = get_image_index_str(idx)
     img_idx_str += file_tail
     prefix = pathlib.Path(prefix)
+    print(f'File Path is {file_path}')
     if training:
         file_path = pathlib.Path("training") / info_type / img_idx_str
     else:
@@ -374,6 +376,7 @@ def get_kitti_image_info(
     with_imageshape=True,
 ):
     root_path = pathlib.Path(path)
+    print(f'Root Path is {root_path}')
     if not isinstance(image_ids, list):
         image_ids = list(range(image_ids))
 
