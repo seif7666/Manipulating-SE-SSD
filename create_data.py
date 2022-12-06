@@ -92,4 +92,4 @@ def lyft_data_prep(root_path, version="trainval"):
 
 if __name__ == "__main__":
     #fire.Fire()
-    kitti_data_prep("/data/zhengwu/KITTI/object")
+    kitti_data_prep("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
