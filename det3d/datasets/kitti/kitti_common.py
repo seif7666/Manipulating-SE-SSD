@@ -292,11 +292,12 @@ def get_kitti_info_path(
     img_idx_str = get_image_index_str(idx)
     img_idx_str += file_tail
     prefix = pathlib.Path(prefix)
-    print(f'File Path is {file_path}')
     if training:
         file_path = pathlib.Path("training") / info_type / img_idx_str
+        print(f'File Path is {file_path}')
     else:
         file_path = pathlib.Path("testing") / info_type / img_idx_str
+        print(f'File Path is {file_path}')
     if exist_check and not (prefix / file_path).exists():
         raise ValueError("file not exist: {}".format(file_path))
     if relative_path:
