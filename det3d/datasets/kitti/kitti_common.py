@@ -300,10 +300,11 @@ def get_kitti_info_path(
         print(f'File Path is {file_path}')
     if exist_check and not (prefix / file_path).exists():
         raise ValueError("file not exist: {}".format(file_path))
-    if relative_path:
-        return str(file_path)
-    else:
-        return str(prefix / file_path)
+    # if relative_path:
+    #     return str(file_path)
+    # else:
+    print(f'Path is {str(prefix / file_path)}')
+    return str(prefix / file_path)
 
 
 def get_image_path(idx, prefix, training=True, relative_path=True, exist_check=True):
