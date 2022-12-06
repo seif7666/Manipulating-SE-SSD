@@ -105,7 +105,7 @@ def create_kitti_info_file(data_path, save_path=None, relative_path=True):
         save_path = Path(save_path)
 
     # get kitti_infos_train and dump it into the file
-    print(f'Data path is {data_path}')
+    # print(f'Data path is {data_path}')
     kitti_infos_train = get_kitti_image_info(
         data_path,
         training=True,
@@ -117,7 +117,7 @@ def create_kitti_info_file(data_path, save_path=None, relative_path=True):
     )
     _calculate_num_points_in_gt(data_path, kitti_infos_train, relative_path)
     filename = save_path / "kitti_infos_train.pkl"
-    print(f"Kitti info train file is saved to {filename}")
+    # print(f"Kitti info train file is saved to {filename}")
     with open(filename, "wb") as f:
         pickle.dump(kitti_infos_train, f)
 
@@ -294,17 +294,17 @@ def get_kitti_info_path(
     prefix = pathlib.Path(prefix)
     if training:
         file_path = pathlib.Path("training") / info_type / img_idx_str
-        print(f'File Path is {file_path}')
+        # print(f'File Path is {file_path}')
     else:
         file_path = pathlib.Path("testing") / info_type / img_idx_str
-        print(f'File Path is {file_path}')
+        # print(f'File Path is {file_path}')
     if exist_check and not (prefix / file_path).exists():
         return get_kitti_info_path(    0, prefix, "image_2", ".png", training, relative_path, exist_check)
         raise ValueError("file not exist: {}".format(file_path))
     # if relative_path:
     #     return str(file_path)
     # else:
-    print(f'Path is {str(prefix / file_path)}')
+    # print(f'Path is {str(prefix / file_path)}')
     return str(prefix / file_path)
 
 
@@ -379,7 +379,7 @@ def get_kitti_image_info(
     with_imageshape=True,
 ):
     root_path = pathlib.Path(path)
-    print(f'Root Path is {root_path}')
+    # print(f'Root Path is {root_path}')
     if not isinstance(image_ids, list):
         image_ids = list(range(image_ids))
 
