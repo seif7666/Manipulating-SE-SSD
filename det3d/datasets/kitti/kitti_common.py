@@ -450,12 +450,9 @@ def get_kitti_image_info(
         return info
 
     image_infos = []
-    count= 10
     for i in tqdm(image_ids):
-        count+=1
         image_infos.append(map_func(i))
-        if count > 10:
-            break
+        
 
     return image_infos
 
