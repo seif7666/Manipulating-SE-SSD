@@ -273,7 +273,7 @@ log_level = "INFO"
 work_dir = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/" + TAG
 # load_from: "path of pre-trained checkpoint to initialize both teacher & student, e.g., CIA-SSD pre-trained model"
 # load_from = "/xxx/xxx/xxx/epoch_60.pth"
-load_from = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/pre_trained_model_2/epoch_60.pth"
+load_from = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/se-ssd-model.pth"
 resume_from = None
 workflow = [("train", 60), ("val", 1)] if my_paras['enable_ssl'] else [("train", 60), ("val", 1)]
 save_file = False if TAG == "debug" or TAG == "exp_debug" or Path(work_dir, "Det3D").is_dir() else True
