@@ -179,7 +179,7 @@ class SpMiddleFHD(nn.Module):
         sparse_shape = np.array(input_shape[::-1]) + [1, 0, 0]
         coors = coors.int()
 
-        ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        ret = spcon.core.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         ret = self.middle_conv(ret)
         ret = ret.dense()
 
