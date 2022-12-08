@@ -200,7 +200,7 @@ training_pipeline = test_pipeline if my_paras['eval_training_set'] else train_pi
 
 
 data_root = data_root_prefix + "/KITTI/object"
-train_anno = data_root_prefix + "/KITTI/object/kitti_infos_" + my_paras['data_mode'] + ".pkl"
+train_anno = data_root_prefix +  my_paras['data_mode'] + ".pkl"
 val_anno = data_root_prefix + "/KITTI/object/kitti_infos_val.pkl"
 test_anno = data_root_prefix + "/KITTI/object/kitti_infos_test.pkl"
 trainval_anno = data_root_prefix + "/KITTI/object/kitti_infos_trainval.pkl"
