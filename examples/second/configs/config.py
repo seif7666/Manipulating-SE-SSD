@@ -199,11 +199,11 @@ test_pipeline = [
 training_pipeline = test_pipeline if my_paras['eval_training_set'] else train_pipeline
 
 
-data_root = data_root_prefix + "/KITTI/object"
-train_anno = data_root_prefix +  my_paras['data_mode'] + ".pkl"
-val_anno = data_root_prefix + "/KITTI/object/kitti_infos_val.pkl"
-test_anno = data_root_prefix + "/KITTI/object/kitti_infos_test.pkl"
-trainval_anno = data_root_prefix + "/KITTI/object/kitti_infos_trainval.pkl"
+data_root = data_root_prefix 
+train_anno = data_root_prefix + "kitti_infos_" + my_paras['data_mode'] + ".pkl"
+val_anno = data_root_prefix + "kitti_infos_val.pkl"
+test_anno = data_root_prefix + "/kitti_infos_test.pkl"
+trainval_anno = data_root_prefix + "/kitti_infos_trainval.pkl"
 
 data = dict(
     samples_per_gpu=my_paras['batch_size'],  # batch_size: 4
