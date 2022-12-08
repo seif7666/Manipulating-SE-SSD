@@ -25,17 +25,15 @@ class DataBaseSamplerV2:
         gt_aug_similar_type=False,
     ):
         # load all gt database here.
-        for dic in db_infos:
-            for k, v in dic.items():
-                logger.info(f"load {len(v)} {k} database infos")
+        for k, v in db_infos.items():
+            logger.info(f"load {len(v)} {k} database infos")
 
         # preprocess: filter_by_min_num_points/difficulty.
         if db_prepor is not None:
             db_infos = db_prepor(db_infos)
             logger.info("After filter database:")
-            for dic in db_infos:
-                for k, v in dic.items():
-                    logger.info(f"load {len(v)} {k} database infos")
+            for k, v in db_infos.items():
+                logger.info(f"load {len(v)} {k} database infos")
 
         self.db_infos = db_infos
         self._rate = rate
