@@ -454,7 +454,7 @@ def get_kitti_image_info(
     for i in tqdm(image_ids):
         count-=1
         image_infos.append(map_func(i))
-        if(count < 0)
+        if count < 0:
             break
         
 
