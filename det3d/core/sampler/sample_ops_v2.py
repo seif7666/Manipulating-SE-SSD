@@ -25,6 +25,8 @@ class DataBaseSamplerV2:
         gt_aug_similar_type=False,
     ):
         # load all gt database here.
+        for i in range(5):
+            print(db_infos[i])
         for k, v in db_infos.items():
             logger.info(f"load {len(v)} {k} database infos")
 
