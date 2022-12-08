@@ -129,7 +129,7 @@ dataset_type = "KittiDataset"
 db_sampler = dict(
     type="GT-AUG",
     enable=True,
-    db_info_path=data_root_prefix + "/KITTI/object/dbinfos_" + my_paras['data_mode'] +".pkl",
+    db_info_path='/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_train.pkl',
     sample_groups=[dict(Car=15,),],
     db_prep_steps=[
         dict(filter_by_min_num_points=dict(Car=5,)),
@@ -200,11 +200,11 @@ training_pipeline = test_pipeline if my_paras['eval_training_set'] else train_pi
 
 
 data_root = data_root_prefix 
-train_anno = data_root_prefix + "kitti_infos_" + my_paras['data_mode'] + ".pkl"
-val_anno = data_root_prefix + "kitti_infos_val.pkl"
-test_anno = data_root_prefix + "/kitti_infos_test.pkl"
-trainval_anno = data_root_prefix + "/kitt_infos_trainval.pkl"
-
+train_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/dbinfos_train.pkl'
+val_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_val.pkl'
+test_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_test.pkl'
+trainval_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_trainval.pkl'
+#/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_train.pkl
 data = dict(
     samples_per_gpu=my_paras['batch_size'],  # batch_size: 4
     workers_per_gpu=2,  # default: 2
