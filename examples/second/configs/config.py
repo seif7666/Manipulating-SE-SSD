@@ -5,7 +5,7 @@ from pathlib import Path
 from det3d.builder import build_box_coder
 from det3d.utils.config_tool import get_downsample_factor
 
-data_root_prefix = "/mnt/proj50/zhengwu"
+data_root_prefix = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/"
 
 # norm_cfg = dict(type='SyncBN', eps=1e-3, momentum=0.01)
 norm_cfg = None
@@ -264,7 +264,7 @@ lr_config = dict(type="one_cycle", lr_max=0.003, moms=[0.95, 0.85], div_factor=1
 checkpoint_config = dict(interval=1)
 log_config = dict(interval=10,hooks=[dict(type="TextLoggerHook"),],) # dict(type='TensorboardLoggerHook')
 
-# runtime settings
+# runtime settings 2022-12-08 22:17:38,377 - INFO - Backup source files 
 total_epochs = 60
 device_ids = range(8)
 dist_params = dict(backend="nccl", init_method="env://")
