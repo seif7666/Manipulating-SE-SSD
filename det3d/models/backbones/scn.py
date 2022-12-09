@@ -180,7 +180,9 @@ class SpMiddleFHD(nn.Module):
         coors = coors.int()
 
         ret = spcon.core.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        print()
         ret = self.middle_conv(ret)
+
         ret = ret.dense()
 
         N, C, D, H, W = ret.shape
