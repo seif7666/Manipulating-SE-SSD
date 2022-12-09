@@ -106,38 +106,38 @@ def create_kitti_info_file(data_path, save_path=None, relative_path=True):
 
     # get kitti_infos_train and dump it into the file
     # print(f'Data path is {data_path}')
-    kitti_infos_train = get_kitti_image_info(
-        data_path,
-        training=True,
-        label_info=True,
-        velodyne=True,
-        calib=True,
-        image_ids=train_img_ids,
-        relative_path=relative_path,
-    )
-    _calculate_num_points_in_gt(data_path, kitti_infos_train, relative_path)
-    filename = save_path / "kitti_infos_train.pkl"
-    # print(f"Kitti info train file is saved to {filename}")
-    with open(filename, "wb") as f:
-        pickle.dump(kitti_infos_train, f)
+    # kitti_infos_train = get_kitti_image_info(
+    #     data_path,
+    #     training=True,
+    #     label_info=True,
+    #     velodyne=True,
+    #     calib=True,
+    #     image_ids=train_img_ids,
+    #     relative_path=relative_path,
+    # )
+    # _calculate_num_points_in_gt(data_path, kitti_infos_train, relative_path)
+    # filename = save_path / "kitti_infos_train.pkl"
+    # # print(f"Kitti info train file is saved to {filename}")
+    # with open(filename, "wb") as f:
+    #     pickle.dump(kitti_infos_train, f)
 
-    kitti_infos_val = get_kitti_image_info(data_path,
-                                           training=True,
-                                           label_info=True,
-                                           velodyne=True,
-                                           calib=True,
-                                           image_ids=val_img_ids,
-                                           relative_path=relative_path)
-    _calculate_num_points_in_gt(data_path, kitti_infos_val, relative_path)
-    filename = save_path / 'kitti_infos_val.pkl'
-    print(f"Kitti info val file is saved to {filename}")
-    with open(filename, 'wb') as f:
-        pickle.dump(kitti_infos_val, f)
+    # kitti_infos_val = get_kitti_image_info(data_path,
+    #                                        training=True,
+    #                                        label_info=True,
+    #                                        velodyne=True,
+    #                                        calib=True,
+    #                                        image_ids=val_img_ids,
+    #                                        relative_path=relative_path)
+    # _calculate_num_points_in_gt(data_path, kitti_infos_val, relative_path)
+    # filename = save_path / 'kitti_infos_val.pkl'
+    # print(f"Kitti info val file is saved to {filename}")
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(kitti_infos_val, f)
 
-    filename = save_path / 'kitti_infos_trainval.pkl'
-    print(f"Kitti info trainval file is saved to {filename}")
-    with open(filename, 'wb') as f:
-        pickle.dump(kitti_infos_train + kitti_infos_val, f)
+    # filename = save_path / 'kitti_infos_trainval.pkl'
+    # print(f"Kitti info trainval file is saved to {filename}")
+    # with open(filename, 'wb') as f:
+    #     pickle.dump(kitti_infos_train + kitti_infos_val, f)
 
     kitti_infos_test = get_kitti_image_info(data_path,
                                                   training=False,
@@ -203,11 +203,11 @@ def create_reduced_point_cloud(
 
     _create_reduced_point_cloud(data_path, train_info_path, save_path)
     _create_reduced_point_cloud(data_path, val_info_path, save_path)
-    _create_reduced_point_cloud(data_path, test_info_path, save_path)
+    # _create_reduced_point_cloud(data_path, test_info_path, save_path)
     if with_back:
         _create_reduced_point_cloud(data_path, train_info_path, save_path, back=True)
         _create_reduced_point_cloud(data_path, val_info_path, save_path, back=True)
-        _create_reduced_point_cloud(data_path, test_info_path, save_path, back=True)
+        # _create_reduced_point_cloud(data_path, test_info_path, save_path, back=True)
 
     def load_annotations(self, ann_file):
         pass
