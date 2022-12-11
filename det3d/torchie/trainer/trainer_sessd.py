@@ -206,8 +206,8 @@ class Trainer(object):
             raise TypeError("'args' must be either a Hook object or dict, not {}".format(type(args)))
 
     def call_hook(self, fn_name):
-        print('Hooks are :')
-        print(self._hooks)
+        # print('Hooks are :')
+        # print(self._hooks)
         for hook in self._hooks:
             getattr(hook, fn_name)(self)  # self is the param (trainer/runner) of func hook.fn_name
 
@@ -254,7 +254,7 @@ class Trainer(object):
             Transfer input data from numpy to torch format;
             Feed data to model and get losses;
         '''
-
+        print('In Batch Processor inline')
         if "local_rank" in kwargs:
             device = torch.device(kwargs["local_rank"])
         else:
@@ -334,7 +334,7 @@ class Trainer(object):
 
         for i, data_batch in enumerate(data_loader):
             print('Line 334 trainer_sessd')
-            print(data_batch)
+            # print(data_batch)
             # try:
             #     data_batch_unlabeled = next(dataloader_iterator_unlabel)
             # except StopIteration:

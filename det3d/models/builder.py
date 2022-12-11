@@ -15,9 +15,11 @@ from .registry import (
 
 def build(cfg, registry, default_args=None):
     if isinstance(cfg, list):
+        print(f'cfg is a list  ***********************************************************')
         modules = [build_from_cfg(cfg_, registry, default_args) for cfg_ in cfg]
         return nn.Sequential(*modules)
     else:
+        print(f'cfg is not a list  ***********************************************************')
         return build_from_cfg(cfg, registry, default_args)
 
 
