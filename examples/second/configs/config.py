@@ -24,7 +24,7 @@ box_coder = dict(type="ground_box3d_coder", n_dim=7, linear_dim=False, encode_an
 TAG = 'exp_se_ssd_v1_8'
 # torch.set_printoptions(precision=4, sci_mode=False)
 my_paras = dict(
-    batch_size=4,
+    batch_size=8,
     data_mode="train",        # "train" or "trainval": the set to train the model;
     enable_ssl=True,         # Ensure "False" in CIA-SSD training
     eval_training_set=False,  # True: eval on "data_mode" set; False: eval on validation set.[Ensure "False" in training; Switch in Testing]
@@ -265,16 +265,16 @@ checkpoint_config = dict(interval=1)
 log_config = dict(interval=10,hooks=[dict(type="TextLoggerHook"),],) # dict(type='TensorboardLoggerHook')
 
 # runtime settings 2022-12-08 22:17:38,377 - INFO - Backup source files 
-total_epochs = 60
+total_epochs = 1
 device_ids = range(8)
 dist_params = dict(backend="nccl", init_method="env://")
 log_level = "INFO"
-work_dir = "/mnt/proj50/zhengwu/saved_model/KITTI/proj52/megvii/second/" + TAG
+work_dir = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/" 
 # load_from: "path of pre-trained checkpoint to initialize both teacher & student, e.g., CIA-SSD pre-trained model"
 # load_from = "/xxx/xxx/xxx/epoch_60.pth"
 load_from = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/se-ssd-model.pth"
 resume_from = None
 workflow = [("train", 60), ("val", 1)] if my_paras['enable_ssl'] else [("train", 60), ("val", 1)]
-save_file = False if TAG == "debug" or TAG == "exp_debug" or Path(work_dir, "Det3D").is_dir() else True
+save_file = True
 
 

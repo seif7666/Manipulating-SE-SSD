@@ -447,7 +447,7 @@ class Trainer(object):
         self.call_hook("before_run")    # for summarywriter
 
         while self.epoch < max_epochs:
-            print(f'Epoch Number {self.epoch}')
+            # print(f'Epoch Number {self.epoch}')
             for i, flow in enumerate(workflow):
                 # print(f'I in enumerate is  {i}')
                 mode, epochs = flow
