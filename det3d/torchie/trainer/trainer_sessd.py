@@ -206,6 +206,8 @@ class Trainer(object):
             raise TypeError("'args' must be either a Hook object or dict, not {}".format(type(args)))
 
     def call_hook(self, fn_name):
+        print('Hooks are :')
+        print(self._hooks)
         for hook in self._hooks:
             getattr(hook, fn_name)(self)  # self is the param (trainer/runner) of func hook.fn_name
 
@@ -332,7 +334,7 @@ class Trainer(object):
 
         for i, data_batch in enumerate(data_loader):
             print('Line 334 trainer_sessd')
-            print(data_batch.shape)
+            print(data_batch)
             # try:
             #     data_batch_unlabeled = next(dataloader_iterator_unlabel)
             # except StopIteration:
@@ -449,9 +451,9 @@ class Trainer(object):
         while self.epoch < max_epochs:
             print(f'Epoch Number {self.epoch}')
             for i, flow in enumerate(workflow):
-                print(f'I in enumerate is  {i}')
+                # print(f'I in enumerate is  {i}')
                 mode, epochs = flow
-                print(f'Mode is {mode}')
+                print(f'Line 454 trainer_sessd: Mode is {mode}')
                 if isinstance(mode, str):
                     if not hasattr(self, mode):
                         raise ValueError("Trainer has no method named '{}' to run an epoch".format(mode))
@@ -466,6 +468,7 @@ class Trainer(object):
                         return
                     # todo: modified by zhengwu, to eval in last epoch
                     elif mode == "train" and self.epoch == max_epochs:
+                        print(f'Line 469: trainer_sessd, Mode is train self.epoch ==max_epochs')
                         mode, epochs = workflow[1]
                         epoch_runner = getattr(self, mode)
                         epoch_runner(data_loaders[2], **kwargs)
@@ -473,6 +476,7 @@ class Trainer(object):
                     elif mode == "val":
                         epoch_runner(data_loaders[2], **kwargs)
                     else:
+                        print(f'Line 477: trainer_sessd, in the else')
                         epoch_runner = getattr(self, "train")
                         epoch_runner(data_loaders[0], data_loaders[1], self.epoch, **kwargs)
                         # if 55 <= self.epoch <= 59:
