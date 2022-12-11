@@ -1,12 +1,12 @@
 import time
 
 import numpy as np
-import spconv.pytorch as spcon
+import spconv
 import torch
 from det3d.models.utils import Empty, change_default_args
 from det3d.torchie.cnn import constant_init, kaiming_init
 from det3d.torchie.trainer import load_checkpoint
-from spconv.pytorch.conv import SparseConv3d, SubMConv3d
+from spconv import SparseConv3d, SubMConv3d
 from torch import nn
 from torch.nn import BatchNorm1d
 from torch.nn import functional as F
@@ -21,7 +21,7 @@ import math
 
 def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """3x3 convolution with padding"""
-    return spcon.SubMConv3d(
+    return spconv.SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=3,
@@ -33,7 +33,7 @@ def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
 
 def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """1x1 convolution"""
-    return spcon.SubMConv3d(
+    return spconv.SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=1,
@@ -43,7 +43,7 @@ def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
         indice_key=indice_key,
     )
 
-class SparseBasicBlock(spcon.SparseModule):
+class SparseBasicBlock(spconv.SparseModule):
     expansion = 1
 
     def __init__(
@@ -103,7 +103,7 @@ class SpMiddleFHD(nn.Module):
         if norm_cfg is None:
             norm_cfg = dict(type="BN1d", eps=1e-3, momentum=0.01)
 
-        self.middle_conv = spcon.SparseSequential(
+        self.middle_conv = spconv.SparseSequential(
             SubMConv3d(num_input_features, 16, 3, bias=False, indice_key="subm0"),
             build_norm_layer(norm_cfg, 16)[1],
             nn.ReLU(),
@@ -179,7 +179,7 @@ class SpMiddleFHD(nn.Module):
         sparse_shape = np.array(input_shape[::-1]) + [1, 0, 0]
         coors = coors.int()
 
-        ret = spcon.core.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         print()
         ret = self.middle_conv(ret)
 
