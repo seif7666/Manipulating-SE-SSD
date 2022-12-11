@@ -254,7 +254,6 @@ class Trainer(object):
             Transfer input data from numpy to torch format;
             Feed data to model and get losses;
         '''
-        print('In Batch Processor inline')
         if "local_rank" in kwargs:
             device = torch.device(kwargs["local_rank"])
         else:
@@ -333,7 +332,6 @@ class Trainer(object):
         consistency_weight = 1.0 * self.sigmoid_rampup(self.epoch)
 
         for i, data_batch in enumerate(data_loader):
-            print('Line 334 trainer_sessd')
             # print(data_batch)
             # try:
             #     data_batch_unlabeled = next(dataloader_iterator_unlabel)
@@ -453,7 +451,6 @@ class Trainer(object):
             for i, flow in enumerate(workflow):
                 # print(f'I in enumerate is  {i}')
                 mode, epochs = flow
-                print(f'Line 454 trainer_sessd: Mode is {mode}')
                 if isinstance(mode, str):
                     if not hasattr(self, mode):
                         raise ValueError("Trainer has no method named '{}' to run an epoch".format(mode))
@@ -468,7 +465,6 @@ class Trainer(object):
                         return
                     # todo: modified by zhengwu, to eval in last epoch
                     elif mode == "train" and self.epoch == max_epochs:
-                        print(f'Line 469: trainer_sessd, Mode is train self.epoch ==max_epochs')
                         mode, epochs = workflow[1]
                         epoch_runner = getattr(self, mode)
                         epoch_runner(data_loaders[2], **kwargs)
@@ -476,7 +472,6 @@ class Trainer(object):
                     elif mode == "val":
                         epoch_runner(data_loaders[2], **kwargs)
                     else:
-                        print(f'Line 477: trainer_sessd, in the else')
                         epoch_runner = getattr(self, "train")
                         epoch_runner(data_loaders[0], data_loaders[1], self.epoch, **kwargs)
                         # if 55 <= self.epoch <= 59:
