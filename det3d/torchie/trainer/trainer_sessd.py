@@ -331,6 +331,8 @@ class Trainer(object):
         consistency_weight = 1.0 * self.sigmoid_rampup(self.epoch)
 
         for i, data_batch in enumerate(data_loader):
+            print('Line 334 trainer_sessd')
+            print(data_batch.shape)
             # try:
             #     data_batch_unlabeled = next(dataloader_iterator_unlabel)
             # except StopIteration:
@@ -445,8 +447,11 @@ class Trainer(object):
         self.call_hook("before_run")    # for summarywriter
 
         while self.epoch < max_epochs:
+            print(f'Epoch Number {self.epoch}')
             for i, flow in enumerate(workflow):
+                print(f'I in enumerate is  {i}')
                 mode, epochs = flow
+                print(f'Mode is {mode}')
                 if isinstance(mode, str):
                     if not hasattr(self, mode):
                         raise ValueError("Trainer has no method named '{}' to run an epoch".format(mode))

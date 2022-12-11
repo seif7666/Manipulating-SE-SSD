@@ -204,7 +204,6 @@ train_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_o
 val_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_val.pkl'
 test_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_test.pkl'
 trainval_anno = '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_trainval.pkl'
-#/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/kitti_infos_train.pkl
 
 data = dict(
     samples_per_gpu=my_paras['batch_size'],  # batch_size: 4
