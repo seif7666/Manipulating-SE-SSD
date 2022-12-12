@@ -98,7 +98,7 @@ def main():
 
     model = build_detector(cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
     filehandler = open('model.txt', 'w') 
-    filehandler.write(model)
+    filehandler.write(str(model))
     datasets = [build_dataset(cfg.data.train)]
     if cfg.my_paras.get("enable_ssl", False):
         datasets.append(build_dataset(cfg.data.train_unlabel_val))
