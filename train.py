@@ -97,10 +97,8 @@ def main():
         set_random_seed(args.seed)
 
     model = build_detector(cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
-    filehandler = open('model.pkl', 'w') 
-    pickle.dump(model, filehandler)
-    print('SAVED!')
-    return
+    filehandler = open('model.txt', 'w') 
+    filehandler.write(model)
     datasets = [build_dataset(cfg.data.train)]
     if cfg.my_paras.get("enable_ssl", False):
         datasets.append(build_dataset(cfg.data.train_unlabel_val))
