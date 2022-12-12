@@ -46,7 +46,7 @@ my_paras = dict(
 model = dict(
     type="VoxelNet",
     pretrained=None,
-    reader=dict(type="VFELayer", norm_cfg=norm_cfg,),
+    reader=dict(type="vfe", in_channels=7, out_channels=7, norm_cfg=norm_cfg,),
     backbone=dict(type="SpMiddleFHD", num_input_features=4, ds_factor=8, norm_cfg=norm_cfg,),
     neck=dict(
         type="SSFA",
