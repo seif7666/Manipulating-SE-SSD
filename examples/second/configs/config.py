@@ -174,7 +174,7 @@ val_preprocessor = dict(
 voxel_generator = dict(
     range=[0, -40.0, -3.0, 70.4, 40.0, 1.0],
     voxel_size=[0.05, 0.05, 0.1],
-    max_points_in_voxel=10,
+    max_points_in_voxel=5,
     max_voxel_num=20000,
     far_points_first=my_paras['far_points_first'],
 )
