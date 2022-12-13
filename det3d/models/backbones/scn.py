@@ -181,7 +181,6 @@ class SpMiddleFHD(nn.Module):
 
         ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         ret = self.middle_conv(ret)
-        print(f'Output from middle Conv is {ret.shape}')
         ret = ret.dense()
         print(f'Output from middle Conv after dense is {ret.shape}')
 
