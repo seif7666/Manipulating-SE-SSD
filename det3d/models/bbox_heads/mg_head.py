@@ -178,7 +178,7 @@ def create_loss(
         cls_preds = cls_preds.view(batch_size, -1, num_class)            # [8, 70400] -> [8, 70400, 1]
     else:
         cls_preds = cls_preds.view(batch_size, -1, num_class + 1)
-
+    
     cls_targets = cls_targets.squeeze(-1)                                                 # [8, 70400, 1] -> [8, 70400]
     one_hot_targets = one_hot_f(cls_targets, depth=num_class + 1, dtype=box_preds.dtype)  # [8, 70400, 2]
     if encode_background_as_zeros:                  # True
