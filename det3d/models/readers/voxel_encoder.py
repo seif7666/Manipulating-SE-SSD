@@ -105,7 +105,7 @@ class VoxelFeatureExtractor(nn.Module):
         x = F.relu(x)
         x *= mask
         # x: [concated_num_points, num_voxel_size, 128]
-        print(f'Output shape is {features.shape}')
+        print(f'Output shape is {x.shape}')
         voxelwise = torch.max(x, dim=1)[0]
         print(f'Voxelwise is {voxelwise}')
         return voxelwise
