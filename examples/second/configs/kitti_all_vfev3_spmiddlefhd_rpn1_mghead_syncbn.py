@@ -63,8 +63,8 @@ model = dict(
     type="VoxelNet",
     pretrained=None,
     reader=dict(
-        type="VoxelFeatureExtractor",
-        # type='SimpleVoxel',
+        type="VoxelFeatureEx",
+        type='SimpleVoxel',
         num_input_features=4,
         norm_cfg=norm_cfg,
     ),
