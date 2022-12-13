@@ -106,8 +106,9 @@ class VoxelFeatureExtractor(nn.Module):
         # x: [concated_num_points, num_voxel_size, 128]
         print(f'Output shape is {x.shape}')
         voxelwise = torch.max(x, dim=1)[0]
+        voxelwise=torch.cat([x, voxelwise], dim=-1)
         print(f'Voxelwise is {voxelwise.shape}')
-        return voxelwise
+        return  voxelwise
 
 
 @READERS.register_module
