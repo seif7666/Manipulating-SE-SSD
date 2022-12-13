@@ -183,11 +183,9 @@ class SpMiddleFHD(nn.Module):
         ret = self.middle_conv(ret)
         ret = ret.dense()
         print(f'Output from middle Conv after dense is {ret.shape}')
-
         N, C, D, H, W = ret.shape
         ret = ret.view(N, C * D, H, W)
         print(f'Returning shape is {ret.shape}')
-
         return ret
 
 
