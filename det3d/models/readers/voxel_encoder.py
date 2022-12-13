@@ -74,7 +74,7 @@ class VoxelFeatureExtractor(nn.Module):
         # var_torch_init(self.linear.bias)
         self.norm = BatchNorm1d(num_filters[1])
 
-    def forward(self, features, num_voxels, coors):
+    def forward(self, features, num_voxels, coors=Nonr):
         # features: [concated_num_points, num_voxel_size, 3(4)]
         # num_voxels: [concated_num_points]
         # t = time.time()
