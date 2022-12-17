@@ -402,8 +402,11 @@ def create_bbox_mesh(p3d, gt_boxes3d):
 class plot3d(object):
     def __init__(self):
         self.app = pg.mkQApp()
+        print('After app')
         self.view = gl.GLViewWidget()
+        print('After view')
         coord = gl.GLAxisItem()
+        print('After coord')
         glLineWidth(3)
         coord.setSize(3, 3, 3)
         self.view.addItem(coord)
@@ -425,6 +428,7 @@ class plot3d(object):
 
 
 def show_lidar_with_boxes(pc_velo, objects, calib):
+    print("BEFORE")
     p3d = plot3d()
     print("Reached HERE")
     points = pc_velo[:, 0:3]
