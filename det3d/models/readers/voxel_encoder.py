@@ -105,7 +105,9 @@ class VoxelFeatureExtractor(nn.Module):
         x = F.relu(x)
         x *= mask
         # x: [concated_num_points, num_voxel_size, 128]
+        #(100,200,5,128)
         voxelwise = torch.max(x, dim=1)[0]
+        #(100,200,5,256)
         return voxelwise
 
 

@@ -332,7 +332,9 @@ class Trainer(object):
         consistency_weight = 1.0 * self.sigmoid_rampup(self.epoch)
 
         for i, data_batch in enumerate(data_loader):
-            # print(data_batch)
+            print(data_batch)
+            print(data_batch.shape)
+            return
             # try:
             #     data_batch_unlabeled = next(dataloader_iterator_unlabel)
             # except StopIteration:
