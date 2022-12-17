@@ -4,7 +4,6 @@ import re
 from collections import OrderedDict, defaultdict
 from functools import partial
 
-import apex
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
@@ -278,17 +277,17 @@ def train_detector(model, dataset, cfg, distributed=False, validate=False, logge
         lr_scheduler = None
 
     # put model on gpus
-    if distributed:
-        model = apex.parallel.convert_syncbn_model(model)
-        model = DistributedDataParallel(
-            model.cuda(cfg.local_rank),
-            device_ids=[cfg.local_rank],
-            output_device=cfg.local_rank,
-            # broadcast_buffers=False,
-            find_unused_parameters=True,
-        )
-    else:
-        model = model.cuda()
+    # if distributed:
+    #     model = apex.parallel.convert_syncbn_model(model)
+    #     model = DistributedDataParallel(
+    #         model.cuda(cfg.local_rank),
+    #         device_ids=[cfg.local_rank],
+    #         output_device=cfg.local_rank,
+    #         # broadcast_buffers=False,
+    #         find_unused_parameters=True,
+    #     )
+    # else:
+    model = model.cuda()
     logger.info(f"model structure: {model}")
 
     # build trainer
