@@ -426,6 +426,7 @@ class plot3d(object):
 
 def show_lidar_with_boxes(pc_velo, objects, calib):
     p3d = plot3d()
+    print("Reached HERE")
     points = pc_velo[:, 0:3]
     pc_inte = pc_velo[:, 3]
     pc_color = inte_to_rgb(pc_inte)
