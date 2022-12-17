@@ -100,7 +100,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     # visualization part
     if vis_id is not None:
         assert  vis_id in eval_id
-        from det3d.visualization.kitti_data_vis.kitti.kitti_object import show_lidar_with_boxes_rect
+        from det3d.kitti import show_lidar_with_boxes_rect
         import numpy as np
 
         index = eval_id.index(vis_id)
