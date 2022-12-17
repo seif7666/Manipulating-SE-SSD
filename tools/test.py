@@ -114,7 +114,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
         kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
         lidar_data = kitt.get_lidar(vis_id)
-        print(f'Lidar shape is {lidar_data}')
+        print(f'Lidar shape is {lidar_data.shape}')
         calib= kitt.get_calibration(vis_id)
         print(calib.P)
         show_lidar_with_boxes(lidar_data,pred_boxes,calib)
