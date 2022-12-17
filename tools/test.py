@@ -100,7 +100,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     # visualization part
     if vis_id is not None:
         assert  vis_id in eval_id
-        # from det3d.kitti import show_lidar_with_boxes_rect
+        from det3d.kitti_visualization import kitti_object,show_lidar_with_boxes
         import numpy as np
 
         index = eval_id.index(vis_id)
@@ -112,9 +112,17 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
         index = valid_ids.index(vis_id)
 
-        print(f'Sample ID is {vis_id}')
-        print(f'pred_boxes3d {pred_boxes}')
-        print(f'Sample ID is {pred_scores}')
+        kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
+        lidar_data = kitt.get_lidar(vis_id)
+        print(f'Lidar shape is {lidar_data}')
+        calib= kitt.get_calibration(vis_id)
+        print(calib.P)
+        show_lidar_with_boxes(lidar_data,pred_boxes,calib)
+
+
+        # print(f'Sample ID is {vis_id}')
+        # print(f'pred_boxes3d {pred_boxes}')
+        # print(f'Sample ID is {pred_scores}')
 
         # show_lidar_with_boxes_rect(
         #     sample_id=vis_id,
