@@ -5,6 +5,7 @@ import os.path as osp
 import shutil
 import tempfile
 
+import pickle
 import torch
 import torch.distributed as dist
 from det3d import torchie
@@ -114,9 +115,18 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
         kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
         lidar_data = kitt.get_lidar(vis_id)
+        file = open('lidar.pkl', 'wb')
+        pickle.dump(lidar_data, file)
+        file.close()
         print(f'Lidar shape is {lidar_data.shape}')
         calib= kitt.get_calibration(vis_id)
         print(calib.P)
+        file = open('calib.pkl', 'wb')
+        pickle.dump(calib, file)
+        file.close()
+        file = open('pred_boxes.pkl', 'wb')
+        pickle.dump(pred_boxes, file)
+        file.close()
         show_lidar_with_boxes(lidar_data,pred_boxes,calib)
 
 
