@@ -229,7 +229,7 @@ class SSFA(nn.Module):
 
         x_weight_0 = self.w_0(x_output_0)
         x_weight_1 = self.w_1(x_output_1)
-        print(f'X_weights shape  are {x_weight_0.shape}')
+        # print(f'X_weights shape  are {x_weight_0.shape}')
         x_weight = torch.softmax(torch.cat([x_weight_0, x_weight_1], dim=1), dim=1)
         x_output = x_output_0 * x_weight[:, 0:1, :, :] + x_output_1 * x_weight[:, 1:, :, :]
 
