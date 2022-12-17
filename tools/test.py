@@ -100,7 +100,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     # visualization part
     if vis_id is not None:
         assert  vis_id in eval_id
-        from det3d.kitti import show_lidar_with_boxes_rect
+        # from det3d.kitti import show_lidar_with_boxes_rect
         import numpy as np
 
         index = eval_id.index(vis_id)
@@ -111,11 +111,16 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         pred_scores = pred_annos[index]['score']
 
         index = valid_ids.index(vis_id)
-        show_lidar_with_boxes_rect(
-            sample_id=vis_id,
-            pred_boxes3d=pred_boxes,
-            pred_scores = pred_scores,
-        )
+
+        print(f'Sample ID is {vis_id}')
+        print(f'pred_boxes3d {pred_boxes}')
+        print(f'Sample ID is {pred_scores}')
+
+        # show_lidar_with_boxes_rect(
+        #     sample_id=vis_id,
+        #     pred_boxes3d=pred_boxes,
+        #     pred_scores = pred_scores,
+        # )
 
 
 def compute_on_dataset(model, data_loader, device, timer=None, show=False):
