@@ -443,6 +443,7 @@ def show_lidar_with_boxes(pc_velo, objects, calib):
         x1, y1, z1 = ori3d_pts_3d_velo[0, :]
         x2, y2, z2 = ori3d_pts_3d_velo[1, :]
         p3d.add_line([x1, y1, z1], [x2, y2, z2])
+    print("Reached HERE")
     p3d.show()
 
 
