@@ -219,6 +219,11 @@ class SSFA(nn.Module):
                 xavier_init(m, distribution="uniform")
 
     def forward(self, x):
+
+        file=open("before_rpn.pkl",'wb')
+        pickle.dump(x_output,file)
+        file.close()
+
         x_0 = self.bottom_up_block_0(x)
         x_1 = self.bottom_up_block_1(x_0)
         x_trans_0 = self.trans_0(x_0)
