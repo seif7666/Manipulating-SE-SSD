@@ -221,7 +221,7 @@ class SSFA(nn.Module):
     def forward(self, x):
 
         file=open("before_rpn.pkl",'wb')
-        pickle.dump(x_output,file)
+        pickle.dump(x,file)
         file.close()
 
         x_0 = self.bottom_up_block_0(x)
