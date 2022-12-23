@@ -182,8 +182,9 @@ class KittiDataset(PointCloudDataset):
         info = self._kitti_infos[idx]
         # print(f'Info is {info}')
         pointCloud= info['point_cloud']
-        print(f'Point cloud shape {pointCloud.shape}')
-        print(f'Point cloud Sum:  {torch.sum(pointCloud)}')
+        print(pointCloud)
+        # print(f'Point cloud shape {pointCloud.shape}')
+        # print(f'Point cloud Sum:  {torch.sum(pointCloud)}')
 
         if with_gp:
             print('With Gp ')
