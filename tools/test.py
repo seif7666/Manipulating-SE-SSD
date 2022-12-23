@@ -117,8 +117,9 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
         index = valid_ids.index(vis_id)
 
-        # kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
-        # lidar_data = kitt.get_lidar(vis_id)
+        kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
+        lidar_data = kitt.get_lidar(vis_id)
+        print(f'Esitmate Lidar sum is '{torch.sum(lidar_data)})
         # file = open('lidar.pkl', 'wb')
         # pickle.dump(lidar_data, file)
         # file.close()

@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import os
+import torch
 
 import warnings
 
@@ -179,7 +180,11 @@ class KittiDataset(PointCloudDataset):
             idx = indices.index(idx)
         print(f'IDX is {idx}')
         info = self._kitti_infos[idx]
-        print(f'Info is {info}')
+        # print(f'Info is {info}')
+        pointCloud= info['point_cloud']
+        print(f'Point cloud shape {pointCloud.shape}')
+        print(f'Point cloud Sum:  {torch.sum(pointCloud)}')
+
         if with_gp:
             print('With Gp ')
             gp = self.get_road_plane(idx)
