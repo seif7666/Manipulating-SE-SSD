@@ -181,15 +181,15 @@ class KittiDataset(PointCloudDataset):
         print(f'IDX is {idx}')
         info = self._kitti_infos[idx]
         # print(f'Info is {info}')
-        pointCloud= info['point_cloud']
-        print(pointCloud)
+        # pointCloud= info['point_cloud']
+        # print(pointCloud)
         # print(f'Point cloud shape {pointCloud.shape}')
         # print(f'Point cloud Sum:  {torch.sum(pointCloud)}')
 
         if with_gp:
-            print('With Gp ')
+            # print('With Gp ')
             gp = self.get_road_plane(idx)
-            print(f'GP is {gp}')
+            # print(f'GP is {gp}')
 
         res = {
             "type": "KittiDataset",

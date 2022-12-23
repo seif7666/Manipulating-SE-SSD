@@ -267,8 +267,10 @@ class kitti_object(object):
         self.label_dir = os.path.join(self.root_dir, self.split, "label_2")
         self.calib_dir = os.path.join(self.root_dir, self.split, "calib")
 
-    def get_lidar(self, idx):
-        lidar_filename = os.path.join(self.lidar_dir, "%06d.bin" % (idx))
+    def get_lidar(self, idx, path=None):
+        lidar_filename=path
+        if path is  None:
+            lidar_filename = os.path.join(self.lidar_dir, "%06d.bin" % (idx))
         return load_velo_scan(lidar_filename)
 
     def get_calibration(self, idx):
