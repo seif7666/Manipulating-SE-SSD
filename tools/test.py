@@ -68,7 +68,11 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     samples = []
     valid_ids = get_dataset_ids('val')
     for id in eval_id:
+        print(f'ID is {id}')
         index = valid_ids.index(id)
+        print(f'Dataset{kitti_dataset[index]}')
+        print(f'Dataset{kitti_dataset[index.shape]}')
+
         samples.append(kitti_dataset[index])
     batch_samples = collate_kitti(samples)
     example = example_to_device(batch_samples, device=torch.device(device))
