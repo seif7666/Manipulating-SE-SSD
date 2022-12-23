@@ -1,8 +1,6 @@
 import os
 import numpy as np
-from OpenGL.GL import glLineWidth
-import pyqtgraph as pg
-import pyqtgraph.opengl as gl
+
 import argparse
 
 
