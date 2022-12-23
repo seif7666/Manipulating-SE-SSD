@@ -269,6 +269,7 @@ class kitti_object(object):
         lidar_filename=path
         if path is  None:
             lidar_filename = os.path.join(self.lidar_dir, "%06d.bin" % (idx))
+            print(f'Path is {lidar_filename}')
         return load_velo_scan(lidar_filename)
 
     def get_calibration(self, idx):
