@@ -24,6 +24,7 @@ from det3d.utils.dist.dist_common import (all_gather, get_rank, get_world_size, 
 from tqdm import tqdm
 from det3d.torchie.parallel import collate, collate_kitti
 from torch.utils.data import DataLoader
+import numpy as np
 
 def get_dataset_ids(mode='val'):
     assert mode in ['test', 'val', 'trainval', 'val']
@@ -117,7 +118,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
         lidar_data1 = kitt.get_lidar(vis_id, '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/training/velodyne/000006.bin')
         lidar_data2 = kitt.get_lidar(vis_id)
-        print(f'First is {torch.sum(lidar_data1)}\t second is {lidar_data2}')
+        print(f'First is {np.sum(lidar_data1)}\t second is {np.sum(lidar_data2)}')
         # print(f'Esitmate Lidar sum is {torch.sum(lidar_data)}')
         # file = open('lidar.pkl', 'wb')
         # pickle.dump(lidar_data, file)
