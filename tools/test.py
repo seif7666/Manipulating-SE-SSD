@@ -71,7 +71,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         print(f'ID is {id}')
         index = valid_ids.index(id)
         print(f'Dataset{kitti_dataset[index]}')
-        print(f'Dataset{kitti_dataset[index.shape]}')
+        print(f'Dataset{kitti_dataset[index].shape}')
 
         samples.append(kitti_dataset[index])
     batch_samples = collate_kitti(samples)
