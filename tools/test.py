@@ -116,9 +116,9 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         index = valid_ids.index(vis_id)
 
         kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
-        lidar_data1 = kitt.get_lidar(vis_id, '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/training/velodyne/000006.bin')
-        lidar_data2 = kitt.get_lidar(vis_id)
-        print(f'First is {np.sum(lidar_data1)}\t second is {np.sum(lidar_data2)}')
+        # lidar_data1 = kitt.get_lidar(vis_id, '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/training/velodyne/000006.bin')
+        # lidar_data2 = kitt.get_lidar(vis_id)
+        # print(f'First is {np.sum(lidar_data1)}\t second is {np.sum(lidar_data2)}')
         # print(f'Esitmate Lidar sum is {torch.sum(lidar_data)}')
         # file = open('lidar.pkl', 'wb')
         # pickle.dump(lidar_data, file)
@@ -129,9 +129,9 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         # file = open('calib.pkl', 'wb')
         # pickle.dump(calib, file)
         # file.close()
-        # file = open('pred_boxes.pkl', 'wb')
-        # pickle.dump(pred_boxes, file)
-        # file.close()
+        file = open(f'pred_boxes_{vis_id}.pkl', 'wb')
+        pickle.dump(pred_boxes, file)
+        file.close()
         # show_lidar_with_boxes(lidar_data,pred_boxes,calib)
 
 
