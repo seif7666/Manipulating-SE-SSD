@@ -68,6 +68,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     kitti_dataset = dataloader.dataset         # det3d.datasets.kitti.kitti.KittiDataset
     samples = []
     valid_ids = get_dataset_ids('val')
+    print(f'Valid IDs are: {valid_ids}')
     for id in eval_id:
         index = valid_ids.index(id)
 
