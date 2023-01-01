@@ -66,12 +66,12 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
     # prepare samples
     kitti_dataset = dataloader.dataset         # det3d.datasets.kitti.kitti.KittiDataset
-    samples = []
     valid_ids = get_dataset_ids('val')
-    print(f'Valid IDs are: {valid_ids}')
-    for id in eval_id:
+    samples= []
+    indices = np.random.randint(0,len(valid_ids),10)
+    # print(f'Valid IDs are: {valid_ids}')
+    for id in indices:
         index = valid_ids.index(id)
-
         samples.append(kitti_dataset[index])
     batch_samples = collate_kitti(samples)
     example = example_to_device(batch_samples, device=torch.device(device))
@@ -102,12 +102,13 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
 
 
     # visualization part
-    if vis_id is not None:
-        assert  vis_id in eval_id
-        from det3d.kitti_visualization import kitti_object,show_lidar_with_boxes
-        import numpy as np
+    # if vis_id is not None:
+        # assert  vis_id in eval_id
+    from det3d.kitti_visualization import kitti_object,show_lidar_with_boxes
+    import numpy as np
 
-        index = eval_id.index(vis_id)
+    for index in indices:
+        # index = eval_id.index(vis_id)
         pred_box_loc = pred_annos[index]['location']
         pred_box_dim = pred_annos[index]['dimensions']
         pred_box_ry  = pred_annos[index]['rotation_y'].reshape(-1, 1)
@@ -133,7 +134,8 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         file = open(f'pred_boxes_{vis_id}.pkl', 'wb')
         pickle.dump(pred_boxes, file)
         file.close()
-        # show_lidar_with_boxes(lidar_data,pred_boxes,calib)
+        print('DOne!')
+    # show_lidar_with_boxes(lidar_data,pred_boxes,calib)
 
 
         # print(f'Sample ID is {vis_id}')
