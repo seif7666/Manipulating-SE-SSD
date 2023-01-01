@@ -25,7 +25,6 @@ from det3d.utils.dist.dist_common import (all_gather, get_rank, get_world_size, 
 from tqdm import tqdm
 from det3d.torchie.parallel import collate, collate_kitti
 from torch.utils.data import DataLoader
-import numpy as np
 
 def get_dataset_ids(mode='val'):
     assert mode in ['test', 'val', 'trainval', 'val']
@@ -69,6 +68,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     kitti_dataset = dataloader.dataset         # det3d.datasets.kitti.kitti.KittiDataset
     valid_ids = get_dataset_ids('val')
     samples= []
+    print(len(valid_ids))
     indices = np.random.randint(0,len(valid_ids),10)
     # print(f'Valid IDs are: {valid_ids}')
     for id in indices:
