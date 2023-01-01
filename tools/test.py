@@ -68,7 +68,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     valid_ids = get_dataset_ids('val')
     samples= []
     print(valid_ids)
-    indices = numpy.random.randint(0,len(valid_ids),10)
+    indices = numpy.random.randint(0,len(valid_ids),10,dtype=int)
     indices=valid_ids[indices]
     # print(f'Valid IDs are: {valid_ids}')
     for id in indices:
