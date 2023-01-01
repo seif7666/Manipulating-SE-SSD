@@ -4,11 +4,10 @@ import os
 import os.path as osp
 import shutil
 import tempfile
-
+import numpy
 import pickle
 import torch
 import torch.distributed as dist
-import numpy as np
 from det3d import torchie
 from det3d.core import coco_eval, results2json
 from det3d.datasets import  build_dataset
@@ -69,7 +68,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     valid_ids = get_dataset_ids('val')
     samples= []
     print(len(valid_ids))
-    indices = np.random.randint(0,len(valid_ids),10)
+    indices = numpy.random.randint(0,len(valid_ids),10)
     # print(f'Valid IDs are: {valid_ids}')
     for id in indices:
         index = valid_ids.index(id)
