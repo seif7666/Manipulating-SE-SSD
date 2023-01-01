@@ -8,6 +8,7 @@ import tempfile
 import pickle
 import torch
 import torch.distributed as dist
+import numpy as np
 from det3d import torchie
 from det3d.core import coco_eval, results2json
 from det3d.datasets import  build_dataset
