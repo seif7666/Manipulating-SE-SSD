@@ -69,6 +69,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     samples= []
     print(valid_ids)
     indices = numpy.random.randint(0,len(valid_ids),10,dtype=int)
+    print(indices)
     indices=valid_ids[indices]
     # print(f'Valid IDs are: {valid_ids}')
     for id in indices:
