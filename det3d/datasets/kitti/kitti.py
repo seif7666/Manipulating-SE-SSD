@@ -172,13 +172,11 @@ class KittiDataset(PointCloudDataset):
 
     def get_sensor_data(self, idx, with_image=False, with_gp=False, by_index=False):
         # NOTICE: only for debug, eg. idx=000009, switch off in training/test.
-        print('Get Sensor Data Called!')
         if by_index:
             indices = []
             for info in self._kitti_infos:
                 indices.append(int(info['image']['image_idx']))
             idx = indices.index(idx)
-        print(f'IDX is {idx}')
         info = self._kitti_infos[idx]
         # print(f'Info is {info}')
         # pointCloud= info['point_cloud']
