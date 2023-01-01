@@ -112,7 +112,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     from det3d.kitti_visualization import kitti_object,show_lidar_with_boxes
     import numpy as np
 
-    print(pred_annos)
+    print(len(pred_annos))
     for index in new_indices:
         pred_box_loc = pred_annos[index]['location']
         pred_box_dim = pred_annos[index]['dimensions']
