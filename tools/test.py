@@ -113,7 +113,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     import numpy as np
 
     print(len(pred_annos))
-    for index in new_indices:
+    for index in range(len(new_indices)):
         pred_box_loc = pred_annos[index]['location']
         pred_box_dim = pred_annos[index]['dimensions']
         pred_box_ry  = pred_annos[index]['rotation_y'].reshape(-1, 1)
@@ -136,7 +136,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         # file = open('calib.pkl', 'wb')
         # pickle.dump(calib, file)
         # file.close()
-        file = open(f'pred_boxes_{vis_id}.pkl', 'wb')
+        file = open(f'pred_boxes_{new_indices[index]}.pkl', 'wb')
         pickle.dump(pred_boxes, file)
         file.close()
         print('DOne!')
