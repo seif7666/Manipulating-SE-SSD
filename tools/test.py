@@ -120,7 +120,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
         pred_boxes = np.concatenate((pred_box_loc, pred_box_dim[:,[1,2,0]], pred_box_ry), axis=1)
         pred_scores = pred_annos[index]['score']
 
-        index = valid_ids.index(vis_id)
+        # index = valid_ids.index(vis_id)
 
         kitt= kitti_object("/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/")
         # lidar_data1 = kitt.get_lidar(vis_id, '/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/data_object_velodyne/training/velodyne/000006.bin')
