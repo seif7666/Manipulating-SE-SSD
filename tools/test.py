@@ -71,8 +71,10 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     # print(indices)
     indices=[3566,1246,1308,1940,2462,216,1924,2117,1967,2351]
     # print(f'Valid IDs are: {valid_ids}')
+    new_indices=[]
     for id in indices:
         index= valid_ids[id]
+        new_indices.append(index)
         print(index)
         index = valid_ids.index(index)
         samples.append(kitti_dataset[index])
@@ -110,7 +112,7 @@ def test_v2(dataloader, model, device="cuda", distributed=False, eval_id=None, v
     from det3d.kitti_visualization import kitti_object,show_lidar_with_boxes
     import numpy as np
 
-    for index in indices:
+    for index in new_indices:
         # index = eval_id.index(vis_id)
         pred_box_loc = pred_annos[index]['location']
         pred_box_dim = pred_annos[index]['dimensions']
