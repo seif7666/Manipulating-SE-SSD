@@ -101,6 +101,7 @@ def main():
     # filehandler.write(str(model))
     # filehandler.close()
     datasets = [build_dataset(cfg.data.train)]
+    return
     if cfg.my_paras.get("enable_ssl", False):
         datasets.append(build_dataset(cfg.data.train_unlabel_val))
 
@@ -115,7 +116,7 @@ def main():
 
     # add an attribute for visualization convenience
     model.CLASSES = datasets[0].CLASSES
-    train_detector(model, datasets, cfg, distributed=distributed, validate=args.validate, logger=logger,)
+    # train_detector(model, datasets, cfg, distributed=distributed, validate=args.validate, logger=logger,)
 
 if __name__ == "__main__":
     main()
