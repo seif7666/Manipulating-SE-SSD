@@ -55,6 +55,7 @@ def build_from_cfg(cfg, registry, default_args=None):
     """
     assert isinstance(cfg, dict) and "type" in cfg
     assert isinstance(default_args, dict) or default_args is None
+    print(f'Config is {cfg}')
     args = cfg.copy()
     obj_type = args.pop("type")
     if torchie.is_str(obj_type):

@@ -1,12 +1,12 @@
 import time
 
 import numpy as np
-import spconv
+# import spconv
 import torch
 from det3d.models.utils import Empty, change_default_args
 from det3d.torchie.cnn import constant_init, kaiming_init
 from det3d.torchie.trainer import load_checkpoint
-from spconv import SparseConv3d, SubMConv3d
+# from spconv import SparseConv3d, SubMConv3d
 from torch import nn
 from torch.nn import BatchNorm1d
 from torch.nn import functional as F
@@ -42,7 +42,7 @@ def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
         bias=bias,
         indice_key=indice_key,
     )
-
+"""
 class SparseBasicBlock(spconv.SparseModule):
     expansion = 1
 
@@ -87,6 +87,8 @@ class SparseBasicBlock(spconv.SparseModule):
         out.features = self.relu(out.features)
 
         return out
+
+"""
 
 
 @BACKBONES.register_module

@@ -97,9 +97,9 @@ def main():
         set_random_seed(args.seed)
 
     model = build_detector(cfg.model, train_cfg=cfg.train_cfg, test_cfg=cfg.test_cfg)
-    filehandler = open('model.txt', 'w') 
-    filehandler.write(str(model))
-    filehandler.close()
+    # filehandler = open('model.txt', 'w') 
+    # filehandler.write(str(model))
+    # filehandler.close()
     datasets = [build_dataset(cfg.data.train)]
     if cfg.my_paras.get("enable_ssl", False):
         datasets.append(build_dataset(cfg.data.train_unlabel_val))
