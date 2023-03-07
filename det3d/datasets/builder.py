@@ -30,7 +30,9 @@ def _concat_dataset(cfg, default_args=None):
 
 def build_dataset(cfg, default_args=None):
     print('Building Dataset...')
+    print(cfg)
     if isinstance(cfg, (list, tuple)):
+        print('HERE!')
         dataset = ConcatDataset([build_dataset(c, default_args) for c in cfg])
     elif cfg["type"] == "RepeatDataset":
         dataset = RepeatDataset(
