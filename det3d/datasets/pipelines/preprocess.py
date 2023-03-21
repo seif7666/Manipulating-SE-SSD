@@ -150,7 +150,7 @@ class Preprocess(object):
                                                  enable_sa_swap=[0.1, 50],
                                                  )
             print(f'{"*"*30} Augmentation {"*"*30}')
-            print(points.shape)
+            print(points)
             print(res["lidar"].keys())
             print(f'{"*"*30} Augmentation {"*"*30}')
 
@@ -160,23 +160,28 @@ class Preprocess(object):
             #                                       enable_sa_sparsity=[0.1, 25], # 0.1
             #                                       enable_sa_swap=[0.1, 10], # 0.1
             #                                       )
+        res['lidar']['augmentation']= []
+        for item in points:
+            new_dict= {}
+            point= item
+            if self.shuffle_points:
+                choice = np.random.choice(np.arange(point.shape[0]), point.shape[0], replace=False)
+                point = point[choice]
 
-        if self.shuffle_points:
-            choice = np.random.choice(np.arange(points.shape[0]), points.shape[0], replace=False)
-            points = points[choice]
+            if self.mode == "train" and not res['labeled']:
+                _, point, flipped = prep.random_flip_v2(None, point)
+                _, point, noise_rotation = prep.global_rotation_v3(None, point, self.global_rotation_noise)
+                _, point, noise_scale = prep.global_scaling_v3(None, point, *self.global_scaling_noise)
+                new_dict["transformation"] = {"flipped": flipped, "noise_rotation": noise_rotation, "noise_scale": noise_scale}
+                # _, points, noise_trans = prep.global_translate_v2(None, points, [1.0, 1.0, 0.5])
+                # res["lidar"]["transformation"].update({"noise_trans": noise_trans})
 
-        if self.mode == "train" and not res['labeled']:
-            _, points, flipped = prep.random_flip_v2(None, points)
-            _, points, noise_rotation = prep.global_rotation_v3(None, points, self.global_rotation_noise)
-            _, points, noise_scale = prep.global_scaling_v3(None, points, *self.global_scaling_noise)
-            res["lidar"]["transformation"] = {"flipped": flipped, "noise_rotation": noise_rotation, "noise_scale": noise_scale}
-            # _, points, noise_trans = prep.global_translate_v2(None, points, [1.0, 1.0, 0.5])
-            # res["lidar"]["transformation"].update({"noise_trans": noise_trans})
-
-        res["lidar"]["points"] = points
-        if self.mode == "train" and res['labeled']:
-            res["lidar"]["annotations"] = gt_dict
-
+            new_dict["points"] = point
+            if self.mode == "train" and res['labeled']:
+                new_dict["annotations"] = gt_dict
+            res['lidar']['augmentation'].append(new_dict)
+        print(res.keys())
+        print(res)
         return res, info
 
 
