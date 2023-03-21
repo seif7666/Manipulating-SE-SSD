@@ -180,10 +180,10 @@ class Preprocess(object):
             if self.mode == "train" and res['labeled']:
                 new_dict["annotations"] = gt_dict
             res['lidar']['augmentation'].append(new_dict)
-        del res['points']
 
         print(res.keys())
         print(res['augmentation'].keys())
+        del res['points']
         return res, info
 
 
