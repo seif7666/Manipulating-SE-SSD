@@ -439,7 +439,7 @@ class Trainer(object):
         assert isinstance(data_loaders, list)
         assert torchie.is_list_of(workflow, tuple)
         # assert len(data_loaders) == len(workflow)
-
+        print(f'Data Loaders are: {data_loaders}')
         self._max_epochs = max_epochs
         work_dir = self.work_dir if self.work_dir is not None else "NONE"
         self.logger.info( "Start running, host: %s, work_dir: %s", get_host_info(), work_dir)
@@ -477,6 +477,10 @@ class Trainer(object):
                         # if 55 <= self.epoch <= 59:
                         #     epoch_runner = getattr(self, "val")
                         #     epoch_runner(data_loaders[2], **kwargs)
+                    break
+                break
+                    
+            break
 
         self.call_hook("after_run")
 
