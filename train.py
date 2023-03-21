@@ -116,7 +116,7 @@ def main():
 
     # add an attribute for visualization convenience
     model.CLASSES = datasets[0].CLASSES
-    # train_detector(model, datasets, cfg, distributed=distributed, validate=args.validate, logger=logger,)
+    train_detector(model, datasets, cfg, distributed=distributed, validate=args.validate, logger=logger,)
 
 if __name__ == "__main__":
     main()
