@@ -272,7 +272,7 @@ log_level = "INFO"
 work_dir = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/" 
 # load_from: "path of pre-trained checkpoint to initialize both teacher & student, e.g., CIA-SSD pre-trained model"
 # load_from = "/xxx/xxx/xxx/epoch_60.pth"
-load_from = "/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/se-ssd-model.pth"
+load_from = None#"/content/drive/MyDrive/Graduation_Project/ObjectDetection3D/SESSD/se-ssd-model.pth"
 resume_from = None
 workflow = [("train", 60), ("val", 1)] if my_paras['enable_ssl'] else [("train", 60), ("val", 1)]
 save_file = True
