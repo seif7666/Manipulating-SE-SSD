@@ -101,7 +101,7 @@ def main():
     # filehandler.write(str(model))
     # filehandler.close()
     datasets = [build_dataset(cfg.data.train)]
-    return
+    # return
     if cfg.my_paras.get("enable_ssl", False):
         datasets.append(build_dataset(cfg.data.train_unlabel_val))
 
