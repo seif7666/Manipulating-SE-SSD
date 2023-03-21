@@ -6,7 +6,7 @@ import torch
 from det3d.models.utils import Empty, change_default_args
 from det3d.torchie.cnn import constant_init, kaiming_init
 from det3d.torchie.trainer import load_checkpoint
-from spconv.pytorch import SparseConv3d, SubMConv3d
+from spconv.pytorch import SparseConv3d, SubMConv3d,SparseSequential,SparseConvTensor
 from torch import nn
 from torch.nn import BatchNorm1d
 from torch.nn import functional as F
@@ -105,7 +105,7 @@ class SpMiddleFHD(nn.Module):
         if norm_cfg is None:
             norm_cfg = dict(type="BN1d", eps=1e-3, momentum=0.01)
 
-        self.middle_conv = spconv.SparseSequential(
+        self.middle_conv = SparseSequential(
             SubMConv3d(num_input_features, 16, 3, bias=False, indice_key="subm0"),
             build_norm_layer(norm_cfg, 16)[1],
             nn.ReLU(),
@@ -318,7 +318,7 @@ class SpMiddleResNetFHD(nn.Module):
             norm_cfg = dict(type="BN1d", eps=1e-3, momentum=0.01)
 
         # input: # [1600, 1200, 41]
-        self.middle_conv = spconv.SparseSequential(
+        self.middle_conv = SparseSequential(
 
             SubMConv3d(num_input_features, 16, 3, bias=False, indice_key="res0"),
             build_norm_layer(norm_cfg, 16)[1],
@@ -359,7 +359,7 @@ class SpMiddleResNetFHD(nn.Module):
         sparse_shape = np.array(input_shape[::-1]) + [1, 0, 0]
 
         coors = coors.int()
-        ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        ret = SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         ret = self.middle_conv(ret)
         ret = ret.dense()
 
