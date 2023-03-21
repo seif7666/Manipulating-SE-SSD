@@ -6,7 +6,7 @@ import torch
 from det3d.models.utils import Empty, change_default_args
 from det3d.torchie.cnn import constant_init, kaiming_init
 from det3d.torchie.trainer import load_checkpoint
-from spconv import SparseConv3d, SubMConv3d
+from spconv.pytorch import SparseConv3d, SubMConv3d
 from torch import nn
 from torch.nn import BatchNorm1d
 from torch.nn import functional as F
