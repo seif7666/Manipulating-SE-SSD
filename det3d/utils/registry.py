@@ -72,7 +72,6 @@ def build_from_cfg(cfg, registry, default_args=None):
             "type must be a str or valid type, but got {}".format(type(obj_type))
         )
     if default_args is not None:
-        print('HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
         for name, value in default_args.items():
             args.setdefault(name, value)
 
