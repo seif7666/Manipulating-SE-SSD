@@ -173,12 +173,15 @@ class Preprocess(object):
                 _, point, noise_rotation = prep.global_rotation_v3(None, point, self.global_rotation_noise)
                 _, point, noise_scale = prep.global_scaling_v3(None, point, *self.global_scaling_noise)
                 new_dict["transformation"] = {"flipped": flipped, "noise_rotation": noise_rotation, "noise_scale": noise_scale}
+                print('Transformed')
+                
                 # _, points, noise_trans = prep.global_translate_v2(None, points, [1.0, 1.0, 0.5])
                 # res["lidar"]["transformation"].update({"noise_trans": noise_trans})
 
             new_dict["points"] = point
             if self.mode == "train" and res['labeled']:
                 new_dict["annotations"] = gt_dict
+                print('Annotated')
             res['lidar']['augmentation'].append(new_dict)
 
         print(res.keys())
