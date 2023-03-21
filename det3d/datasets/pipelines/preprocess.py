@@ -182,8 +182,8 @@ class Preprocess(object):
             res['lidar']['augmentation'].append(new_dict)
 
         print(res.keys())
-        print(res['augmentation'].keys())
-        del res['points']
+        print(res['lidar']['augmentation'].keys())
+        del res['lidar']['points']
         return res, info
 
 
