@@ -149,10 +149,10 @@ class Preprocess(object):
                                                  enable_sa_sparsity=[0.05, 50],
                                                  enable_sa_swap=[0.1, 50],
                                                  )
-            print(f'{"*"*15} Augmentation {"*"*15}')
-            print(points)
-            print(points.keys())
-            print(f'{"*"*15} Augmentation {"*"*15}')
+            print(f'{"*"*30} Augmentation {"*"*30}')
+            print(points.shape)
+            print(res["lidar"].keys())
+            print(f'{"*"*30} Augmentation {"*"*30}')
 
             # for cyclist & ped
             # points = pa_aug_v2.pyramid_augment_v0(gt_boxes, points,
