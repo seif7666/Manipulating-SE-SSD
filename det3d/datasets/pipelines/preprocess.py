@@ -149,10 +149,10 @@ class Preprocess(object):
                                                  enable_sa_sparsity=[0.05, 50],
                                                  enable_sa_swap=[0.1, 50],
                                                  )
-            print(f'{"*"*30} Augmentation {"*"*30}')
-            print(points)
-            print(res["lidar"].keys())
-            print(f'{"*"*30} Augmentation {"*"*30}')
+            # print(f'{"*"*30} Augmentation {"*"*30}')
+            # print(points)
+            # print(res["lidar"].keys())
+            # print(f'{"*"*30} Augmentation {"*"*30}')
 
             # for cyclist & ped
             # points = pa_aug_v2.pyramid_augment_v0(gt_boxes, points,
@@ -173,7 +173,7 @@ class Preprocess(object):
                 _, point, noise_rotation = prep.global_rotation_v3(None, point, self.global_rotation_noise)
                 _, point, noise_scale = prep.global_scaling_v3(None, point, *self.global_scaling_noise)
                 new_dict["transformation"] = {"flipped": flipped, "noise_rotation": noise_rotation, "noise_scale": noise_scale}
-                print('Transformed')
+                # print('Transformed')
                 
                 # _, points, noise_trans = prep.global_translate_v2(None, points, [1.0, 1.0, 0.5])
                 # res["lidar"]["transformation"].update({"noise_trans": noise_trans})
@@ -181,13 +181,13 @@ class Preprocess(object):
             new_dict["points"] = point
             if self.mode == "train" and res['labeled']:
                 new_dict["annotations"] = gt_dict
-                print('Annotated')
+                # print('Annotated')
             res['lidar']['augmentation'].append(new_dict)
 
-        print(res.keys())
-        print(res['lidar'].keys())
-        for dic in res['lidar']['augmentation']:
-            print(dic.keys()) 
+        # print(res.keys())
+        # print(res['lidar'].keys())
+        # for dic in res['lidar']['augmentation']:
+        #     print(dic.keys()) 
         # print(res['lidar']['augmentation'].keys())
         del res['lidar']['points']
         return res, info
@@ -218,7 +218,7 @@ class Voxelization(object):
         if res["mode"] == "train" and res['labeled']:
             for inner in res['lidar']['augmentation']:
                 gt_dict = inner["annotations"]
-                print(gt_dict.keys())
+                # print(gt_dict.keys())
                 bv_range = pc_range[[0, 1, 3, 4]]  # [  0. , -40. ,  70.4,  40. ],
                 mask = prep.filter_gt_box_outside_range(gt_dict["gt_boxes"], bv_range)
                 _dict_select(gt_dict, mask)
@@ -235,7 +235,6 @@ class Voxelization(object):
                 num_voxels=num_voxels,
                 shape=grid_size,
             )
-            print(inner.keys())
 
         # voxelization of raw points without transformation
         if "points_raw" in res["lidar"].keys():
@@ -313,15 +312,11 @@ class AssignTarget(object):
         if res["mode"] == "train" and res['labeled']:
             for inner in res['lidar']['augmentation']:
                 gt_dict = inner["annotations"]
-                print(gt_dict.keys())
-                print(gt_dict['gt_classes'])
                 if type(gt_dict['gt_classes']) is list:
                     gt_dict['gt_classes']= gt_dict['gt_classes'][0]
                 gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
                 for target_class_id in self.target_class_ids:
                     gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
-                print(gt_mask)
-                print( gt_dict["gt_boxes"])
                 try:
                     gt_boxes = gt_dict["gt_boxes"][gt_mask]
                 except:

@@ -17,8 +17,11 @@ class Reformat(object):
 
     def __call__(self, res, info):
         meta = res["metadata"]
-        points = res["lidar"]["points"]
-        voxels = res["lidar"]["voxels"]
+        points =[]
+        voxels=[]
+        for item in res['lidar']['augmentation']:
+            points.append(item['points'])
+            voxels.append(item['voxels'])
         anchors = res["lidar"]["targets"]["anchors"]
 
         data_bundle = dict(
