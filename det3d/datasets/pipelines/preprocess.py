@@ -320,7 +320,7 @@ class AssignTarget(object):
                 gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
                 for target_class_id in self.target_class_ids:
                     gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
-                print(gt_boxes)
+                print(gt_mask)
                 gt_boxes = gt_dict["gt_boxes"][gt_mask]
                 gt_boxes[:, -1] = box_np_ops.limit_period(gt_boxes[:, -1], offset=0.5, period=np.pi * 2)  # limit ry to [-pi, pi]
                 gt_dict["gt_boxes"] = [gt_boxes]
