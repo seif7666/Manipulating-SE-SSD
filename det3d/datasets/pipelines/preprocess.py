@@ -330,7 +330,12 @@ class AssignTarget(object):
                 gt_boxes[:, -1] = box_np_ops.limit_period(gt_boxes[:, -1], offset=0.5, period=np.pi * 2)  # limit ry to [-pi, pi]
                 gt_dict["gt_boxes"] = [gt_boxes]
                 gt_dict["gt_classes"] = [gt_dict["gt_classes"][gt_mask]]
-                gt_dict["gt_names"] = [gt_dict["gt_names"][gt_mask]]
+                try:
+                    gt_dict["gt_names"] = [gt_dict["gt_names"][gt_mask]]
+                except:
+                    x= gt_dict['gt_names'][0]
+                    gt_dict["gt_names"] = [x[gt_mask]]
+
                 inner["annotations"] = gt_dict
 
             targets_dict = {}
