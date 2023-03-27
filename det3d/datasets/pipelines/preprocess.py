@@ -311,17 +311,18 @@ class AssignTarget(object):
 
         # get gt labels of targeted classes; limit ry range in [-pi, pi].
         if res["mode"] == "train" and res['labeled']:
-            gt_dict = res["lidar"]["annotations"]
-            gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
-            for target_class_id in self.target_class_ids:
-                gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
+            for inner in res['lidar']['augmentation']:
+                gt_dict = inner["annotations"]
+                gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
+                for target_class_id in self.target_class_ids:
+                    gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
 
-            gt_boxes = gt_dict["gt_boxes"][gt_mask]
-            gt_boxes[:, -1] = box_np_ops.limit_period(gt_boxes[:, -1], offset=0.5, period=np.pi * 2)  # limit ry to [-pi, pi]
-            gt_dict["gt_boxes"] = [gt_boxes]
-            gt_dict["gt_classes"] = [gt_dict["gt_classes"][gt_mask]]
-            gt_dict["gt_names"] = [gt_dict["gt_names"][gt_mask]]
-            res["lidar"]["annotations"] = gt_dict
+                gt_boxes = gt_dict["gt_boxes"][gt_mask]
+                gt_boxes[:, -1] = box_np_ops.limit_period(gt_boxes[:, -1], offset=0.5, period=np.pi * 2)  # limit ry to [-pi, pi]
+                gt_dict["gt_boxes"] = [gt_boxes]
+                gt_dict["gt_classes"] = [gt_dict["gt_classes"][gt_mask]]
+                gt_dict["gt_names"] = [gt_dict["gt_names"][gt_mask]]
+                inner["annotations"] = gt_dict
 
             targets_dict = {}
             for idx, target_assigner in enumerate(self.target_assigners):
@@ -334,12 +335,12 @@ class AssignTarget(object):
                     enable_similar_type=self.enable_similar_type,
                 )
 
-            targets.update({
-                "labels": [targets_dict["labels"]],
-                "reg_targets": [targets_dict["bbox_targets"]],
-                "reg_weights": [targets_dict["bbox_outside_weights"]],
-                "positive_gt_id": [targets_dict["positive_gt_id"]],
-            })
+                targets.update({
+                    "labels": [targets_dict["labels"]],
+                    "reg_targets": [targets_dict["bbox_targets"]],
+                    "reg_weights": [targets_dict["bbox_outside_weights"]],
+                    "positive_gt_id": [targets_dict["positive_gt_id"]],
+                })
 
 
             ################# for raw points labels [unused] #######################
