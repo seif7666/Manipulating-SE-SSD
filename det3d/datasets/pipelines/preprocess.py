@@ -314,6 +314,7 @@ class AssignTarget(object):
             for inner in res['lidar']['augmentation']:
                 gt_dict = inner["annotations"]
                 print(gt_dict.keys())
+                print(gt_dict['gt_classes'])
                 gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
                 for target_class_id in self.target_class_ids:
                     gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
