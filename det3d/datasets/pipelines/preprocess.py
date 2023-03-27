@@ -214,25 +214,28 @@ class Voxelization(object):
     def __call__(self, res, info):
         pc_range = self.voxel_generator.point_cloud_range  # [0, -40, -3, 70.4, 40, 1]
         grid_size = self.voxel_generator.grid_size  # [1408, 1600, 40]
-
+        
         if res["mode"] == "train" and res['labeled']:
-            gt_dict = res["lidar"]["annotations"]
-            bv_range = pc_range[[0, 1, 3, 4]]  # [  0. , -40. ,  70.4,  40. ],
-            mask = prep.filter_gt_box_outside_range(gt_dict["gt_boxes"], bv_range)
-            _dict_select(gt_dict, mask)
-            res["lidar"]["annotations"] = gt_dict
+            for dict in res['lidar']['augmentation']:
+                gt_dict = dict["annotations"]
+                print(gt_dict.keys())
+                bv_range = pc_range[[0, 1, 3, 4]]  # [  0. , -40. ,  70.4,  40. ],
+                mask = prep.filter_gt_box_outside_range(gt_dict["gt_boxes"], bv_range)
+                _dict_select(gt_dict, mask)
+                res["lidar"]["annotations"] = gt_dict
             self.shuffle = True
-
-        points = res["lidar"]["points"]
-        voxels, coordinates, num_points_per_voxel = self.voxel_generator.generate(points)
-        num_voxels = np.array([voxels.shape[0]], dtype=np.int64)
-        res["lidar"]["voxels"] = dict(
-            voxels=voxels,
-            coordinates=coordinates,
-            num_points=num_points_per_voxel,
-            num_voxels=num_voxels,
-            shape=grid_size,
-        )
+        for dict in res['lidar']['augmentation']:
+            points = dict["points"]
+            voxels, coordinates, num_points_per_voxel = self.voxel_generator.generate(points)
+            num_voxels = np.array([voxels.shape[0]], dtype=np.int64)
+            dict["voxels"] = dict(
+                voxels=voxels,
+                coordinates=coordinates,
+                num_points=num_points_per_voxel,
+                num_voxels=num_voxels,
+                shape=grid_size,
+            )
+            print(dict.keys())
 
         # voxelization of raw points without transformation
         if "points_raw" in res["lidar"].keys():
