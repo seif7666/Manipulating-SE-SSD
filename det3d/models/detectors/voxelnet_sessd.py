@@ -17,6 +17,7 @@ class VoxelNet(SingleStageDetector):
 
     def forward(self, example, is_ema=[False, None], return_loss=True, **kwargs):
         # todo: how the data change into torch datatype
+        print(example.keys())
         key_tag = "_raw" if is_ema[0] else ""
         voxels = example["voxels" + key_tag]                    # [69276, 5(points per voxel), 4(features per point)]
         coordinates = example["coordinates" + key_tag]          # [69276, 4]
