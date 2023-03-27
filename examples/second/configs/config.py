@@ -185,7 +185,7 @@ train_pipeline = [
     dict(type="Preprocess", cfg=train_preprocessor),
     dict(type="Voxelization", cfg=voxel_generator),
     dict(type="AssignTarget", cfg=train_cfg["assigner"]),
-    dict(type="Reformat"),
+    # dict(type="Reformat"),
     # dict(type='PointCloudCollect', keys=['points', 'voxels', 'annotations', 'calib']),
 ]
 test_pipeline = [
