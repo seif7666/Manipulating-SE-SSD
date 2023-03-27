@@ -315,6 +315,8 @@ class AssignTarget(object):
                 gt_dict = inner["annotations"]
                 print(gt_dict.keys())
                 print(gt_dict['gt_classes'])
+                if type(gt_dict['gt_classes']) is list:
+                    gt_dict['gt_classes']= gt_dict['gt_classes'][0]
                 gt_mask = np.zeros(gt_dict["gt_classes"].shape, dtype=np.bool)
                 for target_class_id in self.target_class_ids:
                     gt_mask = np.logical_or(gt_mask, gt_dict["gt_classes"] == target_class_id)
