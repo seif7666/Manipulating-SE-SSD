@@ -27,11 +27,11 @@ class Reformat(object):
         data_bundle = dict(
             metadata=meta,                     # image_prefix/shape/id/num_points_features;
             points=points,                     # dim:5, padding with batch_id like coors;
-            voxels=voxels["voxels"],           # [num_voxels, max_num_points(T/5), point_dim(4)]
-            shape=voxels["shape"],             # [[1408, 1600,   40], [1408, 1600,   40]]
-            num_points=voxels["num_points"],   # record num_points in each voxel;
-            num_voxels=voxels["num_voxels"],   # num_voxels in each sample;
-            coordinates=voxels["coordinates"], # coor and batch_id of each voxel;
+            voxels=voxels,           # [num_voxels, max_num_points(T/5), point_dim(4)]
+            shape=voxels[0]["shape"],             # [[1408, 1600,   40], [1408, 1600,   40]]
+            num_points=voxels[0]["num_points"],   # record num_points in each voxel;
+            num_voxels=voxels[0]["num_voxels"],   # num_voxels in each sample;
+            coordinates=voxels[0]["coordinates"], # coor and batch_id of each voxel;
             anchors=anchors,                   # anchors, only one group
         )
 
