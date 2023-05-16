@@ -318,7 +318,7 @@ class KittiDataset(PointCloudDataset):
             gt_bboxes, points = self.augmentor.random_flip(gt_bboxes, points)
             gt_bboxes, points = self.augmentor.global_rotation(gt_bboxes, points)
             gt_bboxes, points = self.augmentor.global_scaling(gt_bboxes, points)
-
+            
 
         if isinstance(self.generator, VoxelGenerator):
             # voxels, coordinates, num_points = self.generator.generate(points)

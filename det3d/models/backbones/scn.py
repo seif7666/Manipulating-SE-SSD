@@ -21,7 +21,7 @@ import math
 
 def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """3x3 convolution with padding"""
-    return spconv.SubMConv3d(
+    return SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=3,
@@ -33,7 +33,7 @@ def conv3x3(in_planes, out_planes, stride=1, indice_key=None, bias=True):
 
 def conv1x1(in_planes, out_planes, stride=1, indice_key=None, bias=True):
     """1x1 convolution"""
-    return spconv.SubMConv3d(
+    return SubMConv3d(
         in_planes,
         out_planes,
         kernel_size=1,
@@ -181,7 +181,7 @@ class SpMiddleFHD(nn.Module):
         sparse_shape = np.array(input_shape[::-1]) + [1, 0, 0]
         coors = coors.int()
 
-        ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        ret = SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         ret = self.middle_conv(ret)
 
         ret = ret.dense()
@@ -209,7 +209,7 @@ class SpMiddleFHDNobn(nn.Module):
         if norm_cfg is None:
             norm_cfg = dict(type="BN1d", eps=1e-3, momentum=0.01)
 
-        self.middle_conv = spconv.SparseSequential(
+        self.middle_conv = SparseSequential(
             SubMConv3d(num_input_features, 16, 3, bias=True, indice_key="subm0"),
             # build_norm_layer(norm_cfg, 16)[1],
             nn.ReLU(),
@@ -293,7 +293,7 @@ class SpMiddleFHDNobn(nn.Module):
         sparse_shape = np.array(input_shape[::-1]) + [1, 0, 0]
         coors = coors.int()
 
-        ret = spconv.SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
+        ret = SparseConvTensor(voxel_features, coors, sparse_shape, batch_size)
         ret = self.middle_conv(ret)
         ret = ret.dense()
 
