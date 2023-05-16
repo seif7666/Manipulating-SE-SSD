@@ -209,6 +209,7 @@ class VoxelFeatureExtractorV3(nn.Module):
         # todo: maybe we should add some info about the voxel
         # print(f'Voxel first value is {voxels[0]}')
         points_mean = voxels[:, :, : self.num_input_features].sum(dim=1, keepdim=False) / num_points_per_voxel.type_as(voxels).view(-1, 1)
+        print(f'Shape is {points_mean}')
         return points_mean.contiguous()
 
 
